@@ -56,9 +56,8 @@ export class Scene extends PureComponent {
       <div id="scene" ref={this.initRef}>
         {this.state.data.map((data, index) => (<Satellites key={index} scene={this.scene} data={data} />))}
         <Earth />
-        <Test />
+        <Test scene={this.scene} />
       </div>
     );
   }
-
 }
