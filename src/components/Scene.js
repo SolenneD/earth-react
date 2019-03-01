@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import * as THREE from 'three';
 
 import { Satellites } from './Satellites';
-import { Earth } from './Earth';
+// import { Earth } from './Earth';
 import { Test } from './Test';
 
 export class Scene extends PureComponent {
@@ -23,14 +23,15 @@ export class Scene extends PureComponent {
     // custom camera...etc.
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+    this.scene.background = new THREE.Color( 0xaaaaaa );
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize( window.innerWidth, window.innerHeight );
-    this.camera.position.z = 5;
+    this.camera.position.z = 300;
   }
 
   componentDidMount() {
     this.ref.appendChild( this.renderer.domElement );
-    setInterval(this.fetchData, 1000);
+    // setInterval(this.fetchData, 1000);
     this.renderer.render( this.scene, this.camera );
   }
 
@@ -54,8 +55,8 @@ export class Scene extends PureComponent {
     // add satelites + earth.
     return (
       <div id="scene" ref={this.initRef}>
-        {this.state.data.map((data, index) => (<Satellites key={index} scene={this.scene} data={data} />))}
-        <Earth />
+        {/* {this.state.data.map((data, index) => (<Satellites key={index} scene={this.scene} data={data} />))} */}
+        {/* <Earth /> */}
         <Test scene={this.scene} />
       </div>
     );

@@ -5,26 +5,31 @@ import * as THREE from 'three';
 export class Test extends PureComponent {
 
   componentDidMount() {
-    // init earth + pos.
-    this.geometry = new THREE.SphereGeometry( 60, 24, 16 );
+    // creer une sphere
+    this.geometry = new THREE.SphereGeometry( 60, 60, 60 );
     this.material = new THREE.MeshPhongMaterial({ 
-        color: 0xff0000,
-     });
-    this.loader = new THREE.TextureLoader();
-    // this.texture = this.loader.load("color-map.jpg");
+        color: 0xffffff,
+    });
 
-    // this.sphere = new THREE.Mesh( this.geometry, this.material, this.loader, this.texture );
-    this.sphere = new THREE.Mesh( this.geometry, this.material, this.loader );
+    // PAS ENCORE LA TEXTURE
+    this.textureLoader = new THREE.TextureLoader();
+    this.texture = this.textureLoader.load( './textures/color-map.jpg' )
+
+    this.sphere = new THREE.Mesh( this.geometry, this.material, this.textureLoader, this.texture );
     this.props.scene.add( this.sphere );
-  }
 
-  componentDidUpdate() {
-    // update satelite pos.
-    const radius = this.props.data.r;
-    const scale = radius * 3;
-    this.sphere.scale.x = scale;
-    this.sphere.scale.y = scale;
-    this.sphere.scale.z = scale;
+    // Light
+    this.light = new THREE.PointLight( 0xffffff, 2, 150, 5 );
+    this.light.position.set( 50, 50, 50 );
+    this.props.scene.add( this.light );
+
+    // Animation cameara keyframe PAS ENCORE FAIT
+    this.animate = () => {
+      requestAnimationFrame( this.animate );
+      this.scene.rotation.x += 0.01;
+      this.scene.rotation.y += 0.02;
+      this.renderer.render( this.scene, this.camera );
+    }
   }
 
   render() {
