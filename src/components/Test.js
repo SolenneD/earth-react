@@ -5,17 +5,15 @@ import * as THREE from 'three';
 export class Test extends PureComponent {
 
   componentDidMount() {
-    // creer une sphere
+    // Sphere
     this.geometry = new THREE.SphereGeometry( 60, 60, 60 );
-    this.material = new THREE.MeshPhongMaterial({ 
-        color: 0xffffff,
-    });
+    this.material = new THREE.MeshPhongMaterial();
 
-    // PAS ENCORE LA TEXTURE
-    this.textureLoader = new THREE.TextureLoader();
-    this.texture = this.textureLoader.load( './textures/color-map.jpg' )
+    // Texture
+    this.texture = new THREE.TextureLoader().load( 'textures/color-map.jpg' );
+    this.earth = new THREE.MeshBasicMaterial( { map: this.texture } );
 
-    this.sphere = new THREE.Mesh( this.geometry, this.material, this.textureLoader, this.texture );
+    this.sphere = new THREE.Mesh( this.geometry, this.material, this.earth );
     this.props.scene.add( this.sphere );
 
     // Light
