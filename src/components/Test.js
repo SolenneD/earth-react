@@ -14,11 +14,10 @@ export class Test extends PureComponent {
     ('textures/color-map.jpg',
       texture => {
         this.earth = new THREE.MeshBasicMaterial( { map: this.texture } );
-        this.sphere = new THREE.MeshBasicMaterial( this.earth );
+        this.sphere = new THREE.MeshBasicMaterial( this.geometry, this.material, this.earth );
+        this.props.scene.add( this.sphere );
       }
     )
-    this.sphere = new THREE.MeshBasicMaterial( this.geometry, this.material );
-    this.props.scene.add( this.sphere );
   }
 
   render() {
