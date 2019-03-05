@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { Satellites } from './Satellites';
 // import { Earth } from './Earth';
 import { Test } from './Test';
+import { Bg } from './Bg';
 
 export class Scene extends PureComponent {
 
@@ -70,6 +71,7 @@ export class Scene extends PureComponent {
       <div id="scene" ref={this.initRef}>
         {/* {this.state.data.map((data, index) => (<Satellites key={index} scene={this.scene} data={data} />))} */}
         {/* <Earth /> */}
+        <Bg scene={this.scene} />
         <Test scene={this.scene} />
       </div>
     );
