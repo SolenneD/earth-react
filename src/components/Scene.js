@@ -27,6 +27,11 @@ export class Scene extends PureComponent {
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     this.camera.position.z = 300;
+
+    // Light
+    this.light = new THREE.PointLight( 0xffffff, 2, 150, 5 );
+    this.light.position.set( 50, 50, 50 );
+    this.props.scene.add( this.light );
   }
 
   animate = () => {
@@ -34,12 +39,7 @@ export class Scene extends PureComponent {
     this.scene.rotation.x += 0.01;
     this.scene.rotation.y += 0.02;
     this.renderer.render( this.scene, this.camera );
-  }
-
-  // Light
-  // light = new THREE.PointLight( 0xffffff, 2, 150, 5 );
-  // this.light.position.set( 50, 50, 50 );
-  // this.props.scene.add( this.light );  
+  } 
 
   componentDidMount() {
     this.ref.appendChild( this.renderer.domElement );
