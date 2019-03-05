@@ -29,9 +29,9 @@ export class Scene extends PureComponent {
     this.camera.position.z = 300;
 
     // Light
-    this.light = new THREE.PointLight( 0xffffff, 2, 150, 5 );
-    this.light.position.set( 50, 50, 50 );
-    this.props.scene.add( this.light );
+    // this.light = new THREE.PointLight( 0xffffff, 2, 150, 5 );
+    // this.light.position.set( 50, 50, 50 );
+    // this.props.scene.add( this.light );
   }
 
   animate = () => {
