@@ -1,11 +1,12 @@
 /********** Imports **********/
 import React, { PureComponent } from 'react';
 import * as THREE from 'three';
+import OrbitControls from 'orbit-controls-es6';
 
 import { Satellites } from './Satellites';
 import { Earth } from './Earth';
 import { Bg } from './Bg';
-import { CardSat } from './CardSat';
+// import { CardSat } from './CardSat';
 
 export class Scene extends PureComponent {
 
@@ -28,6 +29,12 @@ export class Scene extends PureComponent {
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     this.camera.position.z = 300;
+
+    // this.OrbitControls = require('three-orbit-controls')(THREE)
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.controls.enabled = true;
+    this.controls.maxDistance = 1500;
+    this.controls.minDistance = 0;
   }
 
   animate = () => {
