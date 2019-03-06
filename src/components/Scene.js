@@ -3,8 +3,7 @@ import React, { PureComponent } from 'react';
 import * as THREE from 'three';
 
 import { Satellites } from './Satellites';
-// import { Earth } from './Earth';
-import { Test } from './Test';
+import { Earth } from './Earth';
 import { Bg } from './Bg';
 
 export class Scene extends PureComponent {
@@ -37,7 +36,6 @@ export class Scene extends PureComponent {
 
   animate = () => {
     requestAnimationFrame( this.animate );
-    this.scene.rotation.x += 0.01;
     this.scene.rotation.y += 0.02;
     this.renderer.render( this.scene, this.camera );
   } 
@@ -70,9 +68,8 @@ export class Scene extends PureComponent {
     return (
       <div id="scene" ref={this.initRef}>
         {/* {this.state.data.map((data, index) => (<Satellites key={index} scene={this.scene} data={data} />))} */}
-        {/* <Earth /> */}
         <Bg scene={this.scene} />
-        <Test scene={this.scene} />
+        <Earth scene={this.scene} />
       </div>
     );
   }
