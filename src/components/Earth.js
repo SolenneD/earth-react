@@ -10,7 +10,7 @@ export class Earth extends PureComponent {
 
     // Texture
     this.texture = new THREE.TextureLoader().load
-    ('textures/color-map.jpg',
+    ('textures/earth.jpg',
       texture => {
         this.earth = new THREE.MeshBasicMaterial( { map: this.texture } );
         this.sphere = new THREE.Mesh( this.geometry, this.earth );

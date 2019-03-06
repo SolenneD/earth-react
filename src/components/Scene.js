@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { Satellites } from './Satellites';
 import { Earth } from './Earth';
 import { Bg } from './Bg';
+import { CardSat } from './CardSat';
 
 export class Scene extends PureComponent {
 
@@ -27,16 +28,13 @@ export class Scene extends PureComponent {
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     this.camera.position.z = 300;
-
-    // Light
-    // this.light = new THREE.PointLight( 0xffffff, 2, 150, 5 );
-    // this.light.position.set( 50, 50, 50 );
-    // this.props.scene.add( this.light );
   }
 
   animate = () => {
     requestAnimationFrame( this.animate );
-    this.scene.rotation.y += 0.02;
+    // this.scene.rotation.y += .0005;
+    this.scene.rotation.y += .005;
+    // this.scene.rotation.x += .005;
     this.renderer.render( this.scene, this.camera );
   } 
 
@@ -44,6 +42,10 @@ export class Scene extends PureComponent {
     this.ref.appendChild( this.renderer.domElement );
     // setInterval(this.fetchData, 1000);
     this.renderer.render( this.scene, this.camera );
+    // Light
+    // this.light = new THREE.PointLight( 0xff0000, 20, 300, 50 );
+    // this.light.position.set( 50, 50, 150 );
+    // this.scene.add( this.light );
     this.animate();
   }
 
@@ -68,6 +70,8 @@ export class Scene extends PureComponent {
     return (
       <div id="scene" ref={this.initRef}>
         {/* {this.state.data.map((data, index) => (<Satellites key={index} scene={this.scene} data={data} />))} */}
+        <Satellites scene={this.scene} />
+        {/* <CardSat /> */}
         <Bg scene={this.scene} />
         <Earth scene={this.scene} />
       </div>
