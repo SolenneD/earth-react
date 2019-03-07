@@ -6,7 +6,7 @@ export class Bg extends PureComponent {
 
   componentDidMount() {
     // Sphere
-    this.geometry = new THREE.SphereGeometry( 300, 60, 60 );
+    this.geometry = new THREE.SphereGeometry( 900, 70, 70 );
 
     // Texture
     this.texture = new THREE.TextureLoader().load
