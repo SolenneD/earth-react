@@ -33,7 +33,7 @@ export class Scene extends PureComponent {
     // this.OrbitControls = require('three-orbit-controls')(THREE)
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enabled = true;
-    this.controls.maxDistance = 900;
+    this.controls.maxDistance = 300;
     this.controls.minDistance = 10;
   }
 

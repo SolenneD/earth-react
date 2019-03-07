@@ -6,7 +6,7 @@ export class Earth extends PureComponent {
 
   componentDidMount() {
     // Sphere
-    this.geometry = new THREE.SphereGeometry( 100, 60, 60 );
+    this.geometry = new THREE.SphereGeometry( 30, 60, 60 );
 
     // Texture
     this.texture = new THREE.TextureLoader().load
