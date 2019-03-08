@@ -9,7 +9,9 @@ export class Satellites extends PureComponent {
     // Satellite Sphere
     this.geometry = new THREE.SphereGeometry( 10, 32, 32 );
     // Texture
-    this.texture = new THREE.OBJLoader().load
+    this.THREE = THREE;
+    this.objLoader = new this.THREE.OBJLoader();
+    this.objLoader.load
     ('textures/Satellite.obj',
       texture => {
         this.sat = new THREE.MeshBasicMaterial( { map: this.texture } );
