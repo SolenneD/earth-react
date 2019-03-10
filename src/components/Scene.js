@@ -45,6 +45,10 @@ export class Scene extends PureComponent {
     this.renderer.render( this.scene, this.camera );
   } 
 
+  handleClick = () => {
+    console.log('this is:', this);
+  }
+
   componentDidMount() {
     this.ref.appendChild( this.renderer.domElement );
     // setInterval(this.fetchData, 1000);
@@ -77,7 +81,7 @@ export class Scene extends PureComponent {
     return (
       <div id="scene" ref={this.initRef}>
         {/* {this.state.data.map((data, index) => (<Satellites key={index} scene={this.scene} data={data} />))} */}
-        <Satellites scene={this.scene} />
+        <Satellites id="card" onClick={this.handleClick} scene={this.scene} />
         {/* <CardSat /> */}
         <Bg scene={this.scene} />
         <Earth scene={this.scene} />
