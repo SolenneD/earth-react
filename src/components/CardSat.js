@@ -6,19 +6,18 @@ import satData from '../data/sat.json';
 export class CardSat extends PureComponent {
 
     constructor(props) {
-        super(props);
-
-        this.state = {
-            showMe: false
-        };
-
-        this.toggleDiv = this.toggleDiv.bind(this);
-    }
-
-    toggleDiv = () => {
-        const { show } = this.state;
-        this.setState = ({ show: !show })
-    }
+        super(props)
+        this.state = { open: true }
+        this.openModal = this.openModal.bind(this)
+        this.closeModal = this.closeModal.bind(this)
+    
+      }
+      openModal (){
+        this.setState({ open: false })
+      }
+      closeModal () {
+        this.setState({ open: true })
+      }
 
 
 
@@ -36,8 +35,7 @@ export class CardSat extends PureComponent {
                             <p>Longitude : <span>{satDetail.long}</span> km</p>
                             <p>Latitude : <span>{satDetail.lat}</span> km</p>
                         </div>
-                        <button onClick={() => this.toggleDiv()}>Fermer</button>
-                        { this.state.show }
+                        <button onClick={this.closeModal}>Fermer</button>
                     </div>
                 })}
             </div>
