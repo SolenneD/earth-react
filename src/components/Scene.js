@@ -12,7 +12,8 @@ export class Scene extends PureComponent {
 
   state = {
     data: [
-      { r: 0.5, x: 0, y: 0, z: 0 }
+      { r: 10, x: 100, y: 150, z: 120 },
+      { r: 20, x: 200, y: 50, z: 110 }
     ]
   };
 
@@ -71,7 +72,8 @@ export class Scene extends PureComponent {
   fetchData = () => {
     // fetch satelite data.
     const data = [
-      { r: Math.random(), x: 0, y: 0, z: 0 }
+      { r: 10, x: 100, y: 150, z: 120 },
+      { r: 20, x: 200, y: 50, z: 110 }
     ];
     this.setState({ data });
   };
@@ -80,8 +82,8 @@ export class Scene extends PureComponent {
     // add satelites + earth.
     return (
       <div id="scene" ref={this.initRef}>
-        {/* {this.state.data.map((data, index) => (<Satellites key={index} scene={this.scene} data={data} />))} */}
-        <Satellites id="card" onClick={this.handleClick} scene={this.scene} />
+        {/* {this.state.data.map((data, index) => (<Satellites key={this.props.index} scene={this.scene} data={this.props.data} />))} */}
+        <Satellites id="card" scene={this.scene} />
         <CardSat />
         <Bg scene={this.scene} />
         <Earth scene={this.scene} />

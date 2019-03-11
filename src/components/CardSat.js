@@ -4,11 +4,29 @@ import * as THREE from 'three';
 import satData from '../data/sat.json';
 
 export class CardSat extends PureComponent {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showMe: false
+        };
+
+        this.toggleDiv = this.toggleDiv.bind(this);
+    }
+
+    toggleDiv = () => {
+        const { show } = this.state;
+        this.setState = ({ show: !show })
+    }
+
+
+
     render() {
         return (
             <div>
                 {satData.map((satDetail, index) => {
-                    return <div className="card">
+                    return <div key={index} className="card">
                         <h2>{satDetail.satName.toUpperCase()}</h2>
                         <div className="cardImg" >
                             <img src={satDetail.satImg} alt={satDetail.satAlt} />
@@ -18,23 +36,11 @@ export class CardSat extends PureComponent {
                             <p>Longitude : <span>{satDetail.long}</span> km</p>
                             <p>Latitude : <span>{satDetail.lat}</span> km</p>
                         </div>
-                        <button onClick={this.closePopup}>Fermer</button>
+                        <button onClick={() => this.toggleDiv()}>Fermer</button>
+                        { this.state.show }
                     </div>
                 })}
             </div>
         )
-    }
-
-    closePopup = () => {
-        
-        ('.card').animate({
-            'opacity':0
-        },600);
-        ('.card').animate({
-            'top':-1200
-        }, {
-            duration: 2300,
-            queue: false
-        });
     }
 }
