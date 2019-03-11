@@ -54,10 +54,7 @@ export class Scene extends PureComponent {
     this.ref.appendChild( this.renderer.domElement );
     // setInterval(this.fetchData, 1000);
     this.renderer.render( this.scene, this.camera );
-    // Light
-    // this.light = new THREE.PointLight( 0xff0000, 20, 300, 50 );
-    // this.light.position.set( 50, 50, 150 );
-    // this.scene.add( this.light );
+    
     this.animate();
   }
 
@@ -70,7 +67,7 @@ export class Scene extends PureComponent {
   }
 
   fetchData = () => {
-    // fetch satelite data.
+    // fetch satellite data.
     const data = [
       { r: 10, x: 100, y: 150, z: 120 },
       { r: 20, x: 200, y: 50, z: 110 }
@@ -79,12 +76,12 @@ export class Scene extends PureComponent {
   };
 
   render() {
-    // add satelites + earth.
+    // satelites + earth.
     return (
       <div id="scene" ref={this.initRef}>
         {/* {this.state.data.map((data, index) => (<Satellites key={this.props.index} scene={this.scene} data={this.props.data} />))} */}
         <Satellites id="card" scene={this.scene} />
-        <CardSat />
+        {/* <CardSat /> */}
         <Bg scene={this.scene} />
         <Earth scene={this.scene} />
       </div>
