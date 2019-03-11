@@ -28,7 +28,21 @@
   height: 400px;
   padding: 15px;
   border-radius: 10px;
-  border: 1px solid #cccccc
+  border: 1px solid #cccccc;
+  background-color: rgba(255, 255, 255, .5);
+  margin: 10px;
+  position: absolute;
+  z-index: 100;
+}
+
+.cardImg {
+  height: auto;
+  width: 100%;
+}
+
+.cardImg img {
+  width: 100%;
+  margin: auto;
 }
 
 .card p {

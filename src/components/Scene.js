@@ -6,7 +6,7 @@ import OrbitControls from 'orbit-controls-es6';
 import { Satellites } from './Satellites';
 import { Earth } from './Earth';
 import { Bg } from './Bg';
-// import { CardSat } from './CardSat';
+import { CardSat } from './CardSat';
 
 export class Scene extends PureComponent {
 
@@ -82,7 +82,7 @@ export class Scene extends PureComponent {
       <div id="scene" ref={this.initRef}>
         {/* {this.state.data.map((data, index) => (<Satellites key={index} scene={this.scene} data={data} />))} */}
         <Satellites id="card" onClick={this.handleClick} scene={this.scene} />
-        {/* <CardSat /> */}
+        <CardSat />
         <Bg scene={this.scene} />
         <Earth scene={this.scene} />
       </div>

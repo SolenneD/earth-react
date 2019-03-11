@@ -1,19 +1,40 @@
 /********** Imports **********/
 import React, { PureComponent } from 'react';
 import * as THREE from 'three';
+import satData from '../data/sat.json';
 
-export function CardSat() {
-    
-    return (
-        <div className="card">
-            <h2>ISS</h2>
-            <img src="textures/iss.jpg" alt="ISS" />
+export class CardSat extends PureComponent {
+    render() {
+        return (
             <div>
-                <p>Altitude : <span>408.05526028199</span> km</p>
-                <p>Longitude : <span>118.07900427317</span> km</p>
-                <p>Latitude : <span>50.11496269845</span> km</p>
+                {satData.map((satDetail, index) => {
+                    return <div className="card">
+                        <h2>{satDetail.satName.toUpperCase()}</h2>
+                        <div className="cardImg" >
+                            <img src={satDetail.satImg} alt={satDetail.satAlt} />
+                        </div>
+                        <div>
+                            <p>Altitude : <span>{satDetail.alt}</span> km</p>
+                            <p>Longitude : <span>{satDetail.long}</span> km</p>
+                            <p>Latitude : <span>{satDetail.lat}</span> km</p>
+                        </div>
+                        <button onClick={this.closePopup}>close me</button>
+                    </div>
+                })}
             </div>
-            {/* <button onClick={this.closePopup}>close me</button> */}
-        </div>
-    )
+        )
+    }
+
+    closePopup = () => {
+        
+        ('.card').animate({
+            'opacity':0
+        },600);
+        ('.card').animate({
+            'top':-1200
+        }, {
+            duration: 2300,
+            queue: false
+        });
+    }
 }
