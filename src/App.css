@@ -25,11 +25,11 @@
 
 .card {
   width: 300px;
-  height: 400px;
+  height: auto;
   padding: 15px;
   border-radius: 10px;
-  border: 1px solid #cccccc;
-  background-color: rgba(255, 255, 255, .5);
+  /* border: 1px solid #cccccc; */
+  background-color: rgba(255, 255, 255, .6);
   margin: 10px;
   position: absolute;
   z-index: 100;
@@ -42,15 +42,28 @@
 
 .cardImg img {
   width: 100%;
-  margin: auto;
 }
 
 .card p {
   text-align: left;
 }
 
-.card p > span {
-  font-weight: bold;
+.card button {
+  background: none;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  color: #373671;
+  transition: 0.2s;
+}
+.card button:hover {
+  color: #7170b3;
+  transition: 0.2s;
+}
+
+.card button:focus, .card button:active, .card button:visited {
+  border: none;
+  outline: none;
 }
 
 @keyframes App-logo-spin {

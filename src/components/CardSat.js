@@ -18,7 +18,7 @@ export class CardSat extends PureComponent {
                             <p>Longitude : <span>{satDetail.long}</span> km</p>
                             <p>Latitude : <span>{satDetail.lat}</span> km</p>
                         </div>
-                        <button onClick={this.closePopup}>close me</button>
+                        <button onClick={this.closePopup}>Fermer</button>
                     </div>
                 })}
             </div>
