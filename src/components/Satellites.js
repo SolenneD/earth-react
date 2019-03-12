@@ -12,7 +12,8 @@ export class Satellites extends PureComponent {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
 
-    document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );   
+    this.mouse = {};
+    this.raycaster = {};
 
   }
   
@@ -54,6 +55,8 @@ export class Satellites extends PureComponent {
     this.sphere = new THREE.Mesh(this.geometry, this.material);
     this.sphere.position.set(50, 50, 50);
     this.props.scene.add(this.sphere);
+    document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );   
+
   }
 
    componentDidUpdate() {
@@ -64,6 +67,10 @@ export class Satellites extends PureComponent {
      this.sphere.scale.y = scale;
      this.sphere.scale.z = scale;
    }
+
+   componentWillUnmount() {
+    document.removeEventListener('mousedown', this.onDocumentMouseDown);
+  }
 
   render() {
     return (
