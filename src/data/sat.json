@@ -3,14 +3,7 @@
         "id": 1,
         "satName": "ISS",
         "satImg": "textures/sat/iss.jpg",
-        "long": 10008.8,
-        "lat": 20005.5,
-        "alt": 50008.5
-    },
-    {
-        "id": 2,
-        "satName": "Hélios",
-        "satImg": "textures/sat/helios.jpg",
+        "satAlt": "ISS",
         "long": 10008.8,
         "lat": 20005.5,
         "alt": 50008.5
