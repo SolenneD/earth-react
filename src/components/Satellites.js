@@ -9,43 +9,42 @@ export class Satellites extends PureComponent {
   constructor(props) {
     super(props)
     this.state = { open: true }
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-
+    // this.openModal = this.openModal.bind(this);
+    // this.closeModal = this.closeModal.bind(this);
+    this.x = {};
     this.mouse = {};
-    this.raycaster = {};
+    this.raycaster = new THREE.Raycaster();
+    this.mouse = new THREE.Vector2();
 
   }
-  
-  onDocumentMouseDown = ( event ) => {
+
+  onDocumentMouseDown = (event) => {
     event.preventDefault();
-    this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-    this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    this.mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
     // find intersections
-    this.raycaster.setFromCamera( this.mouse, this.camera );
-    this.intersects = this.raycaster.intersectObjects( this.scene.children );
-    if ( this.intersects.length > 0 ) {
-      if ( this.INTERSECTED != this.intersects[ 0 ].object ) {
-        if ( this.INTERSECTED ) this.INTERSECTED.material.emissive.setHex( this.INTERSECTED.currentHex );
-        this.INTERSECTED = this.intersects[ 0 ].object;
-        this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
-        this.INTERSECTED.material.emissive.setHex( 0xff0000 );
-         console.log(this.intersects.length);
-      }
-    } else {
-      if ( this.INTERSECTED ) this.INTERSECTED.material.emissive.setHex( this.INTERSECTED.currentHex );
-      this.INTERSECTED = null;
+    this.raycaster.setFromCamera(this.mouse, this.camera);
+    this.intersects = this.raycaster.intersectObjects(this.objects, true);
+    if (this.intersects.length > 0) {
+
+      this.intersects[0].object.material.color.setHex(Math.random() * 0xffffff);
+
+      this.particle = new THREE.Sprite(this.particleMaterial);
+      this.particle.position.copy(this.intersects[0].point);
+      
+      this.particle.scale.x = this.particle.scale.y = 16;
+      this.scene.add(this.particle);
     }
   }
 
 
-  openModal (){
-    this.setState({ open: false })
-  }
-  
-  closeModal () {
-    this.setState({ open: true })
-  }
+  // openModal (){
+  //   this.setState({ open: false })
+  // }
+
+  // closeModal () {
+  //   this.setState({ open: true })
+  // }
 
   componentDidMount() {
     // Satellite Sphere
@@ -55,20 +54,20 @@ export class Satellites extends PureComponent {
     this.sphere = new THREE.Mesh(this.geometry, this.material);
     this.sphere.position.set(50, 50, 50);
     this.props.scene.add(this.sphere);
-    document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );   
+    document.addEventListener('mousedown', this.onDocumentMouseDown, false);
 
   }
 
-   componentDidUpdate() {
-     // update satelite pos.
-     const radius = 10;
-     const scale = radius * 1;
-     this.sphere.scale.x = scale;
-     this.sphere.scale.y = scale;
-     this.sphere.scale.z = scale;
-   }
+  componentDidUpdate() {
+    // update satelite pos.
+    const radius = 10;
+    const scale = radius * 1;
+    this.sphere.scale.x = scale;
+    this.sphere.scale.y = scale;
+    this.sphere.scale.z = scale;
+  }
 
-   componentWillUnmount() {
+  componentWillUnmount() {
     document.removeEventListener('mousedown', this.onDocumentMouseDown);
   }
 
