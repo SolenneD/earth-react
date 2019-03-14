@@ -1,11 +1,20 @@
 [
     {
-        "id": 1,
-        "satName": "ISS",
-        "satImg": "textures/sat/iss.jpg",
-        "satAlt": "ISS",
-        "long": 10008.8,
-        "lat": 20005.5,
-        "alt": 50008.5
+      "id": 1,
+      "satName": "ISS",
+      "satImg": "textures/sat/iss.jpg",
+      "satAlt": "ISS",
+      "long": 10008.8,
+      "lat": 20005.5,
+      "alt": 50008.5
+    },
+    {
+      "id": 2,
+      "satName": "Saturne",
+      "satImg": "textures/sat/iss.jpg",
+      "satAlt": "SATURNE",
+      "long": 333,
+      "lat": 666,
+      "alt": 999
     }
-]
+  ]
