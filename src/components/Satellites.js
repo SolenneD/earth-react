@@ -8,8 +8,6 @@ const cardStyle = {
   zIndex: 999,
   width: '100%',
   background: 'white',
-  position: "absolute",
-  opacity: .5
 }
  
 export class Satellites extends PureComponent {
@@ -37,14 +35,6 @@ export class Satellites extends PureComponent {
     if (this.intersects.length > 0) {
       const clickedSphere = this.intersects[0].object
       if (clickedSphere.callback) clickedSphere.callback()
- 
-      this.intersects[0].object.material.color.setHex(Math.random() * 0xffffff)
- 
-      this.particle = new THREE.Sprite(this.particleMaterial)
-      this.particle.position.copy(this.intersects[0].point)
- 
-      this.particle.scale.x = this.particle.scale.y = 16
-      this.props.scene.add(this.particle)
     }
   }
  
@@ -59,8 +49,8 @@ export class Satellites extends PureComponent {
   componentDidMount() {
     // Satellite Sphere
     // this.geometry = new THREE.SphereGeometry( this.props.data.r, 32, 32 );
-    this.geometry = new THREE.SphereGeometry(10, 32, 32)
-    this.material = new THREE.MeshBasicMaterial({ color: 0xffff00 })
+    this.geometry = new THREE.SphereGeometry(5, 32, 32)
+    this.material = new THREE.MeshBasicMaterial({ color: 0xaaaaaa })
     this.sphere = new THREE.Mesh(this.geometry, this.material)
     this.sphere.callback = () => {
       // affiche id 1 (iss)

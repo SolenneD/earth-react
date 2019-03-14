@@ -68,7 +68,7 @@ export class Scene extends PureComponent {
   animate = () => {
     requestAnimationFrame(this.animate);
     // this.scene.rotation.y += .0005;
-    this.scene.rotation.y += .005;
+    this.scene.rotation.y += .0035;
     // this.scene.rotation.x += .005;
     this.renderer.render(this.scene, this.camera);
   }
