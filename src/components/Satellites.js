@@ -18,22 +18,26 @@ export class Satellites extends PureComponent {
 
   }
 
-  onDocumentMouseDown = (event) => {
-    event.preventDefault();
-    this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    this.mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+  onDocumentMouseDown = event => {
+    event.preventDefault()
+    this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+    this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
     // find intersections
-    this.raycaster.setFromCamera(this.mouse, this.camera);
-    this.intersects = this.raycaster.intersectObjects(this.objects, true);
+    this.raycaster.setFromCamera(this.mouse, this.props.camera)
+    this.intersects = this.raycaster.intersectObjects(
+      this.props.scene.children,
+      true
+    )
     if (this.intersects.length > 0) {
+      if (this.intersects[0].object.callback)
+        this.intersects[0].object.callback()
+      this.intersects[0].object.material.color.setHex(Math.random() * 0xffffff)
 
-      this.intersects[0].object.material.color.setHex(Math.random() * 0xffffff);
+      this.particle = new THREE.Sprite(this.particleMaterial)
+      this.particle.position.copy(this.intersects[0].point)
 
-      this.particle = new THREE.Sprite(this.particleMaterial);
-      this.particle.position.copy(this.intersects[0].point);
-      
-      this.particle.scale.x = this.particle.scale.y = 16;
-      this.scene.add(this.particle);
+      this.particle.scale.x = this.particle.scale.y = 16
+      this.props.scene.add(this.particle)
     }
   }
 
@@ -49,13 +53,15 @@ export class Satellites extends PureComponent {
   componentDidMount() {
     // Satellite Sphere
     // this.geometry = new THREE.SphereGeometry( this.props.data.r, 32, 32 );
-    this.geometry = new THREE.SphereGeometry(10, 32, 32);
-    this.material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-    this.sphere = new THREE.Mesh(this.geometry, this.material);
-    this.sphere.position.set(50, 50, 50);
-    this.props.scene.add(this.sphere);
-    document.addEventListener('mousedown', this.onDocumentMouseDown, false);
-
+    this.geometry = new THREE.SphereGeometry(10, 32, 32)
+    this.material = new THREE.MeshBasicMaterial({ color: 0xffff00 })
+    this.sphere = new THREE.Mesh(this.geometry, this.material)
+    this.sphere.callback = function() {
+      console.log('Toto!')
+    }
+    this.sphere.position.set(50, 50, 50)
+    this.props.scene.add(this.sphere)
+    document.addEventListener('mousedown', this.onDocumentMouseDown, false)
   }
 
   componentDidUpdate() {
