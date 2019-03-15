@@ -5,15 +5,9 @@ import React, {
 import * as THREE from 'three';
 import OrbitControls from 'orbit-controls-es6';
 
-import {
-  Satellites
-} from './Satellites';
-import {
-  Earth
-} from './Earth';
-import {
-  Bg
-} from './Bg';
+import {Satellites} from './Satellites';
+import {Earth} from './Earth';
+import {Bg} from './Bg';
 
 
 export class Scene extends PureComponent {
@@ -111,8 +105,10 @@ export class Scene extends PureComponent {
     // satelites + earth.
     return (
       <div id="scene" ref={this.initRef}>
-        {/* {this.state.data.map((data, index) => (<Satellites key={this.props.index} scene={this.scene} data={this.props.data} />))} */}
-        <Satellites id="card" scene={this.scene} camera={this.camera} />
+        {this.state.data.map((data, index) => 
+          (<Satellites id="card" key={this.index} scene={this.scene} data={this.data} camera={this.camera} />)
+        )}
+        {/* <Satellites id="card" scene={this.scene} camera={this.camera} /> */}
         {/* <CardSat /> */}
         <Bg scene={this.scene} />
         <Earth scene={this.scene} />

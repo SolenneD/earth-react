@@ -44,25 +44,17 @@ export class Satellites extends PureComponent {
         }
     }
 
-    // openModal (){
-    //   this.setState({ open: false })
-    // }
-
-    // closeModal () {
-    //   this.setState({ open: true })
-    // }
-
     componentDidMount() {
         // Satellite Sphere
-        // this.geometry = new THREE.SphereGeometry( this.props.data.r, 32, 32 );
-        this.geometry = new THREE.SphereGeometry(5, 32, 32)
+        this.geometry = new THREE.SphereGeometry( this.props.data.r, 32, 32 );
+        // this.geometry = new THREE.SphereGeometry(5, 32, 32)
         this.material = new THREE.MeshBasicMaterial({color: 0xaaaaaa})
         this.sphere = new THREE.Mesh(this.geometry, this.material)
         this.sphere.callback = () => {
             // affiche id 1 (iss)
             this.showCard(1);
         }
-        this.sphere.position.set(50, 50, 50)
+        this.sphere.position.set(this.props.data.x, this.props.data.y, this.props.data.z)
         this.props.scene.add(this.sphere)
         // document.addEventListener('mousedown', this.mouseMove, false)
         document.addEventListener('mousemove', this.mouseMove, false);
