@@ -50,6 +50,7 @@ export class Scene extends PureComponent {
     // responsive de la scene
     window.addEventListener( 'resize', this.onWindowResize, false );
   }
+
   // fonction responsive de la scene
   onWindowResize = () => {
     this.camera.aspect = window.innerWidth / window.innerHeight;
@@ -106,7 +107,7 @@ export class Scene extends PureComponent {
     return (
       <div id="scene" ref={this.initRef}>
         {this.state.data.map((data, index) => 
-          (<Satellites id="card" key={this.index} scene={this.scene} data={this.data} camera={this.camera} />)
+          (<Satellites id="card" key={this.index} scene={this.scene} data={this.props.data} camera={this.camera} />)
         )}
         {/* <Satellites id="card" scene={this.scene} camera={this.camera} /> */}
         {/* <CardSat /> */}
