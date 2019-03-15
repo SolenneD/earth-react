@@ -1,5 +1,5 @@
 /********** Imports **********/
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import * as THREE from 'three';
 
 export class Bg extends PureComponent {
@@ -9,8 +9,7 @@ export class Bg extends PureComponent {
     this.geometry = new THREE.SphereGeometry( 300, 60, 60 );
 
     // Texture
-    this.texture = new THREE.TextureLoader().load
-    ('textures/stars.jpg',
+    this.texture = new THREE.TextureLoader().load('textures/stars.jpg',
       texture => {
         this.earth = new THREE.MeshBasicMaterial( { side: THREE.BackSide, map: this.texture } );
         this.sphere = new THREE.Mesh( this.geometry, this.earth );

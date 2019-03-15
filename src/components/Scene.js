@@ -14,9 +14,7 @@ import {
 import {
   Bg
 } from './Bg';
-import {
-  CardSat
-} from './CardSat';
+
 
 export class Scene extends PureComponent {
 
