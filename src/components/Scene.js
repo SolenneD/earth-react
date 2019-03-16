@@ -29,26 +29,26 @@ export class Scene extends PureComponent {
     this.state = {
       data: [{
           satId: 1,
-          r: 10,
-          x: 100,
-          y: 150,
-          z: 120,
+          r: 5,
+          x: -50,
+          y: 50,
+          z: 70,
           event: true
         },
         {
           satId: 2,
-          r: 20,
-          x: 200,
+          r: 5,
+          x: 70,
           y: 50,
           z: 110,
           event: false
         },
         {
           satId: 3,
-          r: 20,
-          x: 150,
-          y: 70,
-          z: 130,
+          r: 5,
+          x: -70,
+          y: 50,
+          z: -160,
           event: false
         }
       ]

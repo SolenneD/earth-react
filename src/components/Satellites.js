@@ -50,11 +50,10 @@ export class Satellites extends PureComponent {
   componentDidMount() {
     // Satellite Sphere
     this.geometry = new THREE.SphereGeometry( this.props.r, 32, 32 );
-    // this.geometry = new THREE.SphereGeometry(5, 32, 32)
-    this.material = new THREE.MeshBasicMaterial({color: 0xaaaaaa})
+    this.material = new THREE.MeshBasicMaterial({color:  Math.random() * 0xffffff})
     this.sphere = new THREE.Mesh(this.geometry, this.material)
     this.sphere.callback = () => {
-        // affiche id 1 (iss)
+        // affiche id
         this.showCard(this.props.satId);
     }
     this.sphere.position.set(this.props.x, this.props.y, this.props.z)
