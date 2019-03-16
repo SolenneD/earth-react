@@ -39,26 +39,31 @@ export class Satellites extends PureComponent {
 
   mouseDown = event => {
     let intersects = this.eventMouseIntersect(event);
+    console.log(intersects);
     if (intersects.length > 0) {
         const clickedSphere = intersects[0].object;
         if (clickedSphere.callback) clickedSphere.callback();
+        console.log(clickedSphere);
     }
   }
 
   componentDidMount() {
     // Satellite Sphere
-    this.geometry = new THREE.SphereGeometry( this.props.data.r, 32, 32 );
+    this.geometry = new THREE.SphereGeometry( this.props.r, 32, 32 );
     // this.geometry = new THREE.SphereGeometry(5, 32, 32)
     this.material = new THREE.MeshBasicMaterial({color: 0xaaaaaa})
     this.sphere = new THREE.Mesh(this.geometry, this.material)
     this.sphere.callback = () => {
         // affiche id 1 (iss)
-        this.showCard(1);
+        this.showCard(this.props.satId);
     }
-    this.sphere.position.set(this.props.data.x, this.props.data.y, this.props.data.z)
+    this.sphere.position.set(this.props.x, this.props.y, this.props.z)
     this.props.scene.add(this.sphere)
-    document.addEventListener('mousemove', this.mouseMove, false);
-    document.addEventListener('mousedown', this.mouseDown, false);
+
+    if (this.props.event == true) {
+      document.addEventListener('mousemove', this.mouseMove, false);
+      document.addEventListener('mousedown', this.mouseDown, false);
+    }
   }
 
   showCard(selectedSatId) {

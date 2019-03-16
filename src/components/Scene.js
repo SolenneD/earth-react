@@ -12,22 +12,6 @@ import {Bg} from './Bg';
 
 export class Scene extends PureComponent {
 
-  state = {
-    data: [{
-        r: 10,
-        x: 100,
-        y: 150,
-        z: 120
-      },
-      {
-        r: 20,
-        x: 200,
-        y: 50,
-        z: 110
-      }
-    ]
-  };
-
   initRef = (ref) => {
     this.ref = ref;
   };
@@ -41,6 +25,34 @@ export class Scene extends PureComponent {
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.camera.position.z = 300;
+
+    this.state = {
+      data: [{
+          satId: 1,
+          r: 10,
+          x: 100,
+          y: 150,
+          z: 120,
+          event: true
+        },
+        {
+          satId: 2,
+          r: 20,
+          x: 200,
+          y: 50,
+          z: 110,
+          event: false
+        },
+        {
+          satId: 3,
+          r: 20,
+          x: 150,
+          y: 70,
+          z: 130,
+          event: false
+        }
+      ]
+    };
 
     // this.OrbitControls = require('three-orbit-controls')(THREE)
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -82,32 +94,12 @@ export class Scene extends PureComponent {
     cancelAnimationFrame(this.animation);
   }
 
-  fetchData = () => {
-    // fetch satellite data.
-    const data = [{
-        r: 10,
-        x: 100,
-        y: 150,
-        z: 120
-      },
-      {
-        r: 20,
-        x: 200,
-        y: 50,
-        z: 110
-      }
-    ];
-    this.setState({
-      data
-    });
-  };
-
   render() {
     // satelites + earth.
     return (
       <div id="scene" ref={this.initRef}>
         {this.state.data.map((data, index) => 
-          (<Satellites id="card" key={this.index} scene={this.scene} data={this.props.data} camera={this.camera} />)
+          (<Satellites id="card" key={this.index} scene={this.scene} event={data.event} satId={data.satId} r={data.r} x={data.x} y={data.y} z={data.z} camera={this.camera} />)
         )}
         {/* <Satellites id="card" scene={this.scene} camera={this.camera} /> */}
         {/* <CardSat /> */}

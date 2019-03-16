@@ -16,5 +16,14 @@
       "long": 33,
       "lat": -56,
       "alt": 644
+    },
+    {
+      "id": 3,
+      "satName": "AD-Suley",
+      "satImg": "textures/sat/Suley.jpg",
+      "satAlt": "Suley",
+      "long": 33,
+      "lat": -56,
+      "alt": 644
     }
   ]
