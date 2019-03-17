@@ -8,7 +8,6 @@ export class Satellites extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {open: true, isCardOpen: false, selectedSatData: {}}
-
     this.x = {}
     this.mouse = {}
     this.raycaster = new THREE.Raycaster()
@@ -25,31 +24,31 @@ export class Satellites extends PureComponent {
         this.props.scene.children,
         true
     )
-    return this.intersects;
+    return this.intersects
   }
 
   mouseMove = event => {
-    let intersects = this.eventMouseIntersect(event);
+    let intersects = this.eventMouseIntersect(event)
     if (intersects.length > 0) {
         const mouseSphere = intersects[0].object
-        if (mouseSphere.callback) this.cursorPointer(true);
-        else this.cursorPointer();
+        if (mouseSphere.callback) this.cursorPointer(true)
+        else this.cursorPointer()
     }
   }
 
   mouseDown = event => {
-    let intersects = this.eventMouseIntersect(event);
-    console.log(intersects);
+    let intersects = this.eventMouseIntersect(event)
+    console.log(intersects)
     if (intersects.length > 0) {
-        const clickedSphere = intersects[0].object;
-        if (clickedSphere.callback) clickedSphere.callback();
-        console.log(clickedSphere);
+        const clickedSphere = intersects[0].object
+        if (clickedSphere.callback) clickedSphere.callback()
+        console.log(clickedSphere)
     }
   }
 
   componentDidMount() {
     // Satellite Sphere
-    this.geometry = new THREE.SphereGeometry( this.props.r, 32, 32 );
+    this.geometry = new THREE.SphereGeometry( this.props.r, 32, 32 )
     this.material = new THREE.MeshBasicMaterial({color:  Math.random() * 0xffffff})
     this.sphere = new THREE.Mesh(this.geometry, this.material)
     this.sphere.callback = () => {
@@ -59,14 +58,14 @@ export class Satellites extends PureComponent {
     this.sphere.position.set(this.props.x, this.props.y, this.props.z)
     this.props.scene.add(this.sphere)
 
-    if (this.props.event == true) {
-      document.addEventListener('mousemove', this.mouseMove, false);
-      document.addEventListener('mousedown', this.mouseDown, false);
+    if (this.props.event === true) {
+      document.addEventListener('mousemove', this.mouseMove, false)
+      document.addEventListener('mousedown', this.mouseDown, false)
     }
   }
 
   showCard(selectedSatId) {
-    // Recupère un  satellite dans le sat.json où l'id est égale à celui passé en paramètre (voir plus haut)
+    // Recupère un  satellite dans le sat.json
     const selectedSatData = satData.filter(sat => sat.id === selectedSatId)[0]
 
     // Met à jour la card
@@ -79,9 +78,9 @@ export class Satellites extends PureComponent {
 
   cursorPointer(toggle = false) {
     if (toggle) {
-        document.getElementById("root").setAttribute("style", "cursor:pointer");
+        document.getElementById("root").setAttribute("style", "cursor:pointer")
     } else {
-        document.getElementById("root").removeAttribute("style");
+        document.getElementById("root").removeAttribute("style")
     }
   }
 
