@@ -2,7 +2,7 @@
     {
       "id": 1,
       "satName": "ISS",
-      "satImg": "textures/sat/iss.jpg",
+      "satImg": "/public/textures/sat/iss.jpg",
       "satAlt": "ISS",
       "long": 8.3,
       "lat": 41.6,
@@ -11,7 +11,7 @@
     {
       "id": 2,
       "satName": "Helios",
-      "satImg": "textures/sat/helios.jpg",
+      "satImg": "/public/textures/sat/helios.jpg",
       "satAlt": "Helios",
       "long": 33,
       "lat": -56,
@@ -20,7 +20,7 @@
     {
       "id": 3,
       "satName": "AD-Suley",
-      "satImg": "textures/sat/Suley.jpg",
+      "satImg": "/public/textures/sat/Suley.jpg",
       "satAlt": "Suley",
       "long": 33,
       "lat": -56,
