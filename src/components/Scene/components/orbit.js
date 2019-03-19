@@ -20,7 +20,6 @@ export class Orbit extends PureComponent {
     const {
       x, y, z, r, event
     } = this.props
-    console.log(this.props)
     this.event = event
     this.scene = scene
     this.camera = camera
@@ -98,12 +97,11 @@ export class Orbit extends PureComponent {
 
   mouseMove(event) {
     const intersects = this.eventMouseIntersect(event)
-
-    if (intersects.length === 2) {
-      console.log('test')
+    if (intersects.length > 0) {
+      const mouseSphere = intersects[0].object
+      if (mouseSphere.callback) this.cursorPointer(true)
+      else this.cursorPointer()
     }
-
-    this.cursorPointer()
   }
 
   showCard(selectedSatId) {

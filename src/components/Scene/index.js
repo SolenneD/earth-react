@@ -2,14 +2,11 @@
 import React, { PureComponent } from 'react'
 import * as THREE from 'three'
 import OrbitControls from 'orbit-controls-es6'
-// import axios from 'axios'
 import mock from '../../mock/mock.json'
 
-// import { Satellites } from './components/Satellites'
 import { Earth } from './components/Earth'
 import { Orbit } from './components/orbit'
 import { Bg } from './components/Bg'
-// import { Iterable } from 'immutable';
 
 export class Scene extends PureComponent {
   constructor(props) {
