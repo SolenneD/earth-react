@@ -1,8 +1,11 @@
 /** ******** Imports ********* */
 import React, { PureComponent } from 'react'
 import * as THREE from 'three'
-
+import * as OBJLoader from 'three-obj-loader'
+import obj from '../../../../public/textures/satellite.obj'
 import satData from '../../../data/sat.json'
+
+OBJLoader(THREE)
 
 export class Orbit extends PureComponent {
   constructor(props) {
@@ -12,9 +15,9 @@ export class Orbit extends PureComponent {
     this.mouse = {}
     this.raycaster = new THREE.Raycaster()
     this.mouse = new THREE.Vector2()
-    this.mouseDown = this.mouseDown.bind(this)
-    this.mouseMove = this.mouseMove.bind(this)
-    this.eventMouseIntersect = this.eventMouseIntersect.bind(this)
+    // this.mouseDown = this.mouseDown.bind(this)
+    // this.mouseMove = this.mouseMove.bind(this)
+    // this.eventMouseIntersect = this.eventMouseIntersect.bind(this)
 
     const { scene, camera, renderer } = this.props
     const {
@@ -30,6 +33,15 @@ export class Orbit extends PureComponent {
     this.torusGeom = new THREE.TorusGeometry(x, 0.1, 7, 40)
     this.torusMat = new THREE.MeshBasicMaterial()
     this.orbit = new THREE.Mesh(this.torusGeom, this.torusMat)
+
+    // this.geometry = new THREE.BoxGeometry(1, 1, 1)
+    this.THREE = THREE
+    this.sphere2 = new THREE.OBJLoader()
+    this.sphere2.load(obj, () => {
+      this.textureSat = new THREE.MeshBasicMaterial({ map: this.texture })
+      this.sat = new THREE.Mesh(this.textureSat)
+      this.scene.add(this.sat)
+    })
 
     // satellite
     this.geometry = new THREE.SphereGeometry(r, 32, 32)
@@ -49,6 +61,7 @@ export class Orbit extends PureComponent {
     this.group = new THREE.Group()
     this.group.add(this.orbit)
     this.group.add(this.sphere)
+    this.group.add(this.sphere2)
 
     // Rotation
     this.group.rotation.z = 3
@@ -61,48 +74,48 @@ export class Orbit extends PureComponent {
   }
 
   componentDidMount() {
-    if (this.event === true) {
-      document.addEventListener('mousemove', this.mouseMove, false)
-      document.addEventListener('mousedown', this.mouseDown, false)
-    }
+    // if (this.event === true) {
+    // document.addEventListener('mousemove', this.mouseMove, false)
+    // document.addEventListener('mousedown', this.mouseDown, false)
+    // }
     this.renderScene()
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('mousemove', this.mouseMove)
-    document.removeEventListener('mousedown', this.mouseDown)
-  }
+  // componentWillUnmount() {
+  // document.removeEventListener('mousemove', this.mouseMove)
+  // document.removeEventListener('mousedown', this.mouseDown)
+  // }
 
-  eventMouseIntersect(event) {
-    const {
-      scene: { children },
-      camera
-    } = this.props
-    event.preventDefault()
-    this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1
-    this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
-    // find intersections
-    this.raycaster.setFromCamera(this.mouse, camera)
-    this.intersects = this.raycaster.intersectObjects(children, true)
-    return this.intersects
-  }
+  // eventMouseIntersect(event) {
+  //   const {
+  //     scene: { children },
+  //     camera
+  //   } = this.props
+  //   event.preventDefault()
+  //   this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+  //   this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+  //   // find intersections
+  //   this.raycaster.setFromCamera(this.mouse, camera)
+  //   this.intersects = this.raycaster.intersectObjects(children, true)
+  //   return this.intersects
+  // }
 
-  mouseDown(event) {
-    const intersects = this.eventMouseIntersect(event)
-    if (intersects.length > 0) {
-      const clickedSphere = intersects[0].object
-      if (clickedSphere.callback) clickedSphere.callback()
-    }
-  }
+  // mouseDown(event) {
+  //   const intersects = this.eventMouseIntersect(event)
+  //   if (intersects.length > 0) {
+  //     const clickedSphere = intersects[0].object
+  //     if (clickedSphere.callback) clickedSphere.callback()
+  //   }
+  // }
 
-  mouseMove(event) {
-    const intersects = this.eventMouseIntersect(event)
-    if (intersects.length > 0) {
-      const mouseSphere = intersects[0].object
-      if (mouseSphere.callback) this.cursorPointer(true)
-      else this.cursorPointer()
-    }
-  }
+  // mouseMove(event) {
+  //   const intersects = this.eventMouseIntersect(event)
+  //   if (intersects.length > 0) {
+  //     const mouseSphere = intersects[0].object
+  //     if (mouseSphere.callback) this.cursorPointer(true)
+  //     else this.cursorPointer()
+  //   }
+  // }
 
   showCard(selectedSatId) {
     // Recupère un  satellite dans le sat.json

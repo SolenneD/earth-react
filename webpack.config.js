@@ -30,7 +30,6 @@ module.exports = {
           }
         ]
       },
-
       {
         test: /\.(sc|sa|c)ss$/,
         use: [
@@ -39,6 +38,9 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ]
+      },{
+        test: /\.obj$/,
+        use: ['webpack-obj-loader']
       }
     ]
   },

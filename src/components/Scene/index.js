@@ -2,13 +2,14 @@
 import React, { PureComponent } from 'react'
 import * as THREE from 'three'
 import OrbitControls from 'orbit-controls-es6'
-import mock from '../../mock/mock.json'
+import { connect } from 'react-redux'
+import { getSatellites } from '../actions'
 
 import { Earth } from './components/Earth'
 import { Orbit } from './components/orbit'
 import { Bg } from './components/Bg'
 
-export class Scene extends PureComponent {
+class Scene extends PureComponent {
   constructor(props) {
     super(props)
 
@@ -22,42 +23,20 @@ export class Scene extends PureComponent {
     this.onWindowResize = this.onWindowResize.bind(this)
     this.initRef = this.initRef.bind(this)
     this.animate = this.animate.bind(this)
-    this.orbits = []
-    let dataSat = {}
-    const test = []
-    let data = {}
-
-    mock.map((satellite) => {
-      // console.log(satellite)
-      dataSat = satellite.TLE_LINE2
-      dataSat = dataSat.split(' ').filter(item => (!item ? null : item))
-      const coordSat = {
-        id: dataSat[1],
-        r: dataSat[3] / 70,
-        x: dataSat[2],
-        y: dataSat[5],
-        z: dataSat[7],
-        event: true
-      }
-      test.push(coordSat)
-      return ''
-    })
-
-    data = test
-
-    this.state = {
-      data
-    }
-
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
     this.controls.enabled = true
     this.controls.maxDistance = 300
     this.controls.minDistance = 10
+
     // responsive de la scene
     window.addEventListener('resize', this.onWindowResize, false)
   }
 
   componentDidMount() {
+    const { dispatch } = this.props
+
+    dispatch(getSatellites())
+
     this.ref.appendChild(this.renderer.domElement)
     setInterval(this.fetchData, 1000)
     this.renderer.render(this.scene, this.camera)
@@ -90,7 +69,8 @@ export class Scene extends PureComponent {
   }
 
   render() {
-    const { data } = this.state
+    const { data } = this.props
+
     return (
       <div id="scene" ref={this.initRef}>
         <Bg scene={this.scene} />
@@ -112,3 +92,9 @@ export class Scene extends PureComponent {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  data: state.satellites.data
+})
+
+export default connect(mapStateToProps)(Scene)
